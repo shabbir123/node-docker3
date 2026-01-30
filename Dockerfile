@@ -6,11 +6,11 @@ WORKDIR /app
 COPY package*.json ./
 
 # Declare build argument (default: development)
-ARG NODE_ENV
-
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
 # Install dependencies conditionally
 RUN if [ "$NODE_ENV" = "development" ]; then \
-      npm ci; \
+      npm ci --include=dev; \
     else \
       npm ci --only=production; \
     fi

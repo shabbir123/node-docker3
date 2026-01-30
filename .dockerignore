@@ -1,5 +1,12 @@
+# Ignore git metadata
 .git
-docker-compose*.yml
-Dockerfile
-.dockerignore
+.gitignore
+# Ignore local node_modules (don't copy host modules)
 node_modules
+
+# Ignore docker files & compose files
+Dockerfile
+docker-compose.yml
+docker-compose.dev.yml
+docker-compose.prod.yml
+
