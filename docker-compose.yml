@@ -11,6 +11,7 @@ services:
       - node-docker3
   node-docker3:
     build: .
+    image: shabbir43/node-docker3-node-docker3:latest
     #ports:
     #- "3000:3000"
     environment:
