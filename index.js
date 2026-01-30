@@ -82,7 +82,7 @@ app.use(express.json());
 // ROUTES
 // ---------------------------
 app.get("/api/v1", (req, res) => {
-  res.send("<h1>Hello from Node + Redis + MongoDB update</h1>");
+  res.send("<h1>Hello from Node + Redis + MongoDB update123</h1>");
   console.log("Load balancing");
 });
 
