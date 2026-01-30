@@ -20,7 +20,7 @@ const {
 const app = express();
 
 // ---------------------------
-// ✅ REDIS CLIENT SETUP
+// REDIS CLIENT SETUP
 // ---------------------------
 const redisClient = createClient({
   socket: {
@@ -31,21 +31,21 @@ const redisClient = createClient({
 
 redisClient.connect().catch(console.error);
 
-// ✅ Create Redis Store instance
+//  Create Redis Store instance
 const redisStore = new RedisStore({
   client: redisClient,
   prefix: "session:",
 });
 
 // ---------------------------
-// ✅ MONGODB CONNECTION
+// MONGODB CONNECTION
 // ---------------------------
 const mongoUrl = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
 
 const connectWithRetry = () => {
   mongoose
     .connect(mongoUrl)
-    .then(() => console.log("✅ MongoDB connected successfully"))
+    .then(() => console.log("MongoDB connected successfully"))
     .catch((err) => {
       console.error("MongoDB connection failed, retrying in 5 seconds...");
       console.error(err.message);
@@ -62,7 +62,7 @@ app.use(session({
   store: redisStore,
   secret: SESSION_SECRET,
   resave: false,
-  saveUninitialized: false, // ✅ cookie only created when session modified
+  saveUninitialized: false, // cookie only created when session modified
   cookie: {
     secure: false,       // false for HTTP localhost
     httpOnly: true,      // cannot be accessed by JS
@@ -82,7 +82,7 @@ app.use(express.json());
 // ROUTES
 // ---------------------------
 app.get("/api/v1", (req, res) => {
-  res.send("<h1>Hello from Node + Redis + MongoDB 🚀</h1>");
+  res.send("<h1>Hello from Node + Redis + MongoDB !!!!!!</h1>");
   console.log("Load balancing");
 });
 
@@ -94,5 +94,5 @@ app.use("/api/v1/users", userRouter);
 // ---------------------------
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`🚀 Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
