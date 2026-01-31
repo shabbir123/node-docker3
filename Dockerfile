@@ -1,26 +1,27 @@
 FROM node:20
 
+# Downgrade npm to 9
+RUN npm install -g npm@9
+
 WORKDIR /app
 
-# Copy dependency files
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Declare build argument (default: development)
+# Install dependencies
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
-# Install dependencies conditionally
+
 RUN if [ "$NODE_ENV" = "development" ]; then \
-      npm ci --include=dev; \
+      npm install --omit=optional; \
     else \
-      npm ci --only=production; \
+      npm install --omit=dev --omit=optional; \
     fi
 
-# Copy remaining source code
+# Copy rest of the source code
 COPY . .
 
-# Set environment variable and expose port
 ENV PORT=3000
 EXPOSE $PORT
 
-# Start the app
 CMD ["node", "index.js"]

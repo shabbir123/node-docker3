@@ -11,8 +11,8 @@ services:
       args:
         NODE_ENV: development
     volumes:
-      #- node_modules:/app/node_modules
-      - ./:/app
+    - node_modules:/app/node_modules
+    - ./:/app
     environment:
       - NODE_ENV=development
       - MONGO_USER=shabbir
